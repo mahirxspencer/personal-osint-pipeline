@@ -1,0 +1,69 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# API keys / local config
+config.json
+secrets.json
+credentials.json
+*.key
+*.pem
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Dependency/build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Reports and generated output
+reports/
+output/
+outputs/
+results/
+generated_reports/
+*.html
+*.pdf
+
+# Keep sample reports only if intentionally fake
+!demo_output/
+!demo_output/**
+!sample_output/
+!sample_output/**
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Streamlit local config
+.streamlit/secrets.toml
+
+# Docker/local temp files
+*.pid
+*.tmp
+tmp/
+temp/
