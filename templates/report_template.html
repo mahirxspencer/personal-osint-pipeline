@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OSINT Report - {{ username }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2em; background: #f9f9f9; color: #222; }
+        h1 { color: #444; }
+        .section { margin-bottom: 2em; }
+        ul { padding-left: 1.5em; }
+        li { margin-bottom: 0.5em; word-break: break-word; }
+        .box { background: #fff; padding: 1em; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .risk { font-weight: bold; }
+        .small { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>OSINT Profile Report</h1>
+
+    <div class="section box">
+        <h2>Subject</h2>
+        <p><strong>Username:</strong> {{ username }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+    </div>
+
+    <div class="section box">
+        <h2>Online Profiles ({{ platforms_found }})</h2>
+        {% if profile_urls %}
+        <ul>
+            {% for url in profile_urls %}
+            <li><a href="{{ url }}" target="_blank" rel="noopener noreferrer">{{ url }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No profiles found, or Sherlock was not available.</p>
+        {% endif %}
+        <p class="small">Profile matches are leads and should be manually verified.</p>
+    </div>
+
+    <div class="section box">
+        <h2>Risk Assessment</h2>
+        <p><strong>Username Reuse:</strong> {{ reused_across_platforms }}</p>
+        <p><strong>Email Reputation:</strong> {{ email_reputation }}</p>
+        <p><strong>Email Suspicious:</strong> {{ email_suspicious }}</p>
+        <p><strong>Email Breached:</strong> {{ email_breached }}</p>
+        <p><strong>Breach Count:</strong> {{ breach_count }}</p>
+        <p><strong>Risk Score:</strong>
+            <span class="risk" style="color: {{ risk_color }};">
+                {{ risk_score }} - {{ flag }}
+            </span>
+        </p>
+    </div>
+
+    {% if notes %}
+    <div class="section box">
+        <h2>Notes</h2>
+        <ul>
+            {% for note in notes %}
+            <li>{{ note }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+</html>
