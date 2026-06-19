@@ -1,7 +1,15 @@
 FROM python:3.11-slim
 
+# Keep system dependencies minimal. wkhtmltopdf is not available in some
+# slim Debian images, so PDF generation gracefully falls back to HTML.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wkhtmltopdf git gcc libffi-dev libssl-dev python3-dev build-essential \
+    && apt-get install -y --no-install-recommends \
+        git \
+        gcc \
+        libffi-dev \
+        libssl-dev \
+        python3-dev \
+        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PIPX_HOME=/opt/pipx
