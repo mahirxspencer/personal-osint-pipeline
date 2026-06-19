@@ -32,7 +32,9 @@ def find_email_with_hunter(
         params["company"] = company
 
     try:
-        res = requests.get("https://api.hunter.io/v2/email-finder", params=params, timeout=15)
+        res = requests.get(
+            "https://api.hunter.io/v2/email-finder", params=params, timeout=15
+        )
         if res.status_code == 200:
             return res.json()
         print(f"[!] Hunter API error: {res.status_code}")

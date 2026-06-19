@@ -30,7 +30,9 @@ def check_emailrep(email: str) -> Dict[str, Any]:
         return {"error": str(exc)}
 
 
-def enumerate_identity(name: str, username: str, email: str, output_dir: str | Path = "output") -> Dict[str, Any]:
+def enumerate_identity(
+    name: str, username: str, email: str, output_dir: str | Path = "output"
+) -> Dict[str, Any]:
     print(f"\n[+] Starting identity enumeration for: {name}, {username}, {email}")
 
     result: Dict[str, Any] = {

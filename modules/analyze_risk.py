@@ -11,7 +11,9 @@ def _load_json(path: Path) -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def analyze(output_dir: str | Path = "output", use_breach_api: bool = False) -> Dict[str, Any] | None:
+def analyze(
+    output_dir: str | Path = "output", use_breach_api: bool = False
+) -> Dict[str, Any] | None:
     print("[+] Analyzing identity exposure...")
 
     output_path = Path(output_dir)
@@ -71,9 +73,7 @@ def analyze(output_dir: str | Path = "output", use_breach_api: bool = False) -> 
         "breach_count": breach_count,
         "risk_score": score,
         "flag": (
-            "High Risk" if score >= 3 else
-            "Moderate Risk" if score >= 1 else
-            "Low Risk"
+            "High Risk" if score >= 3 else "Moderate Risk" if score >= 1 else "Low Risk"
         ),
         "profile_urls": profiles,
         "notes": [

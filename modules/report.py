@@ -8,7 +8,9 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pdfkit
 
 
-def generate_report(output_dir: str | Path = "output", templates_dir: str | Path = "templates") -> Optional[str]:
+def generate_report(
+    output_dir: str | Path = "output", templates_dir: str | Path = "templates"
+) -> Optional[str]:
     print("[+] Generating report...")
 
     output_path = Path(output_dir)

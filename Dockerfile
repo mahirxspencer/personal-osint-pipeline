@@ -4,12 +4,12 @@ FROM python:3.11-slim
 # slim Debian images, so PDF generation gracefully falls back to HTML.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        git \
-        gcc \
-        libffi-dev \
-        libssl-dev \
-        python3-dev \
-        build-essential \
+    git \
+    gcc \
+    libffi-dev \
+    libssl-dev \
+    python3-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PIPX_HOME=/opt/pipx

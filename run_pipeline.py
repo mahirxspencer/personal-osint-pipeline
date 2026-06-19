@@ -12,12 +12,20 @@ from modules.enumerate_identity import enumerate_identity
 from modules.report import generate_report
 
 
-def run_pipeline(name: str, username: str, email: str, output_dir: str = "output", use_breach_api: bool = False):
+def run_pipeline(
+    name: str,
+    username: str,
+    email: str,
+    output_dir: str = "output",
+    use_breach_api: bool = False,
+):
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
     print("\n[1/4] Enumerating identity")
-    enumerate_identity(name=name, username=username, email=email, output_dir=output_path)
+    enumerate_identity(
+        name=name, username=username, email=email, output_dir=output_path
+    )
 
     print("\n[2/4] Enriching social profiles")
     enrich_social(username=username, output_dir=output_path)
@@ -31,10 +39,16 @@ def run_pipeline(name: str, username: str, email: str, output_dir: str = "output
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the Personal OSINT Pipeline")
-    parser.add_argument("--name", required=True, help="Full name of the authorized subject")
+    parser.add_argument(
+        "--name", required=True, help="Full name of the authorized subject"
+    )
     parser.add_argument("--username", required=True, help="Username to scan")
     parser.add_argument("--email", required=True, help="Email address to check")
-    parser.add_argument("--output-dir", default="output", help="Directory for generated JSON/HTML/PDF files")
+    parser.add_argument(
+        "--output-dir",
+        default="output",
+        help="Directory for generated JSON/HTML/PDF files",
+    )
     parser.add_argument(
         "--use-breach-api",
         action="store_true",

@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>OSINT Report - {{ username }}</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 2em; background: #f9f9f9; color: #222; }
-        h1 { color: #444; }
-        .section { margin-bottom: 2em; }
-        ul { padding-left: 1.5em; }
-        li { margin-bottom: 0.5em; word-break: break-word; }
-        .box { background: #fff; padding: 1em; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .risk { font-weight: bold; }
-        .small { color: #666; font-size: 0.9em; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2em;
+            background: #f9f9f9;
+            color: #222;
+        }
+
+        h1 {
+            color: #444;
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        ul {
+            padding-left: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+            word-break: break-word;
+        }
+
+        .box {
+            background: #fff;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .risk {
+            font-weight: bold;
+        }
+
+        .small {
+            color: #666;
+            font-size: 0.9em;
+        }
     </style>
 </head>
+
 <body>
     <h1>OSINT Profile Report</h1>
 
@@ -62,4 +95,5 @@
     </div>
     {% endif %}
 </body>
+
 </html>

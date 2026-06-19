@@ -21,13 +21,15 @@ def socialscan_lookup(username: str) -> List[Dict[str, Any]]:
     found_accounts = []
     for result in results:
         if result.success and not result.available:
-            found_accounts.append({
-                "platform": result.platform.name,
-                "input": result.query,
-                "valid": result.valid,
-                "available": result.available,
-                "detected": result.success,
-            })
+            found_accounts.append(
+                {
+                    "platform": result.platform.name,
+                    "input": result.query,
+                    "valid": result.valid,
+                    "available": result.available,
+                    "detected": result.success,
+                }
+            )
 
     print(f"[+] Found {len(found_accounts)} accounts via SocialScan")
     return found_accounts

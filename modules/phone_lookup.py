@@ -19,7 +19,11 @@ def lookup_phone(phone_number: str, api_key: str | None = None) -> Dict[str, Any
         response = requests.get(url, params=params, timeout=15)
         if response.status_code == 200:
             data = response.json()
-            print("[+] Valid phone number" if data.get("valid") else "[!] Invalid phone number")
+            print(
+                "[+] Valid phone number"
+                if data.get("valid")
+                else "[!] Invalid phone number"
+            )
             return data
         print(f"[!] API error: {response.status_code}")
         return {"error": f"HTTP {response.status_code}"}

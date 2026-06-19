@@ -26,7 +26,9 @@ def _parse_sherlock_output(output_file: Path) -> List[str]:
     return results
 
 
-def enrich_social(username: str, output_dir: str | Path = "output", timeout: int = 5) -> Dict[str, Any]:
+def enrich_social(
+    username: str, output_dir: str | Path = "output", timeout: int = 5
+) -> Dict[str, Any]:
     print(f"[+] Enriching social profile for username: {username}")
 
     output_path = Path(output_dir)
@@ -47,7 +49,14 @@ def enrich_social(username: str, output_dir: str | Path = "output", timeout: int
     try:
         with raw_output_file.open("w", encoding="utf-8") as stdout_file:
             completed = subprocess.run(
-                ["sherlock", username, "--print-found", "--timeout", str(timeout), "--no-color"],
+                [
+                    "sherlock",
+                    username,
+                    "--print-found",
+                    "--timeout",
+                    str(timeout),
+                    "--no-color",
+                ],
                 stdout=stdout_file,
                 stderr=subprocess.PIPE,
                 text=True,
@@ -66,7 +75,9 @@ def enrich_social(username: str, output_dir: str | Path = "output", timeout: int
         "sherlock_return_code": completed.returncode,
     }
     if completed.returncode not in (0, 1):
-        result["warning"] = "Sherlock exited with a non-standard status. Review raw output."
+        result["warning"] = (
+            "Sherlock exited with a non-standard status. Review raw output."
+        )
 
     parsed_path.write_text(json.dumps(result, indent=4), encoding="utf-8")
     print(f"[+] Parsed {len(profiles)} profile(s). Results saved to {parsed_path}")
