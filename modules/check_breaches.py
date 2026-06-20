@@ -20,8 +20,8 @@ def check_breachdirectory(email: str, api_key: str | None = None) -> Dict[str, A
 
     querystring = {"func": "auto", "term": email}
     headers = {
-        "x-rapidapi-host": "breachdirectory.p.rapidapi.com",
-        "x-rapidapi-key": api_key,
+        "X-RapidAPI-Host": "breachdirectory.p.rapidapi.com",
+        "X-RapidAPI-Key": api_key,
     }
 
     print(f"[+] Checking BreachDirectory for: {email}")
@@ -31,13 +31,22 @@ def check_breachdirectory(email: str, api_key: str | None = None) -> Dict[str, A
         )
         if response.status_code == 200:
             data = response.json()
-            raw_results = data.get("result") or []
+
+            # Defend against varying API response structures (dict vs list)
+            if isinstance(data, dict):
+                raw_results = data.get("result") or data.get("results") or []
+                found_flag = bool(data.get("found"))
+            elif isinstance(data, list):
+                raw_results = data
+                found_flag = False
+            else:
+                raw_results = []
+                found_flag = False
+
             return {
                 "checked": True,
-                "found": bool(data.get("found")) or bool(raw_results),
-                "breach_count": len(raw_results)
-                if isinstance(raw_results, list)
-                else 0,
+                "found": found_flag or bool(raw_results),
+                "breach_count": len(raw_results),
             }
 
         print(f"[!] BreachDirectory error: HTTP {response.status_code}")

@@ -56,6 +56,7 @@ def enrich_social(
                     "--timeout",
                     str(timeout),
                     "--no-color",
+                    "--no-txt",
                 ],
                 stdout=stdout_file,
                 stderr=subprocess.PIPE,
